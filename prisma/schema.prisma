@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL") // Same as your Next.js database
+}
+
+model Purchase {
+  id        String   @id @default(uuid())
+  userId    String
+  courseId  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, courseId])
+  @@index([courseId])
+}
+
+model Course {
+  id          String       @id @default(uuid())
+  userId      String
+  title       String       @db.Text
+  description String?      @db.Text
+  price       Float?
+  isPublished Boolean      @default(false)
+  purchases   Purchase[]
+}
+
+model User {
+  id    String   @id @default(uuid())
+  email String   @unique
+}
