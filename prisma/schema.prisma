@@ -39,3 +39,13 @@ model User {
   id    String   @id @default(uuid())
   email String   @unique
 }
+
+model Transaction {
+  id        String  @id
+  userId    String
+  courseId  String
+  amount    Float
+  email     String
+  status    String
+  createdAt DateTime @default(now())
+}
