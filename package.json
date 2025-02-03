@@ -10,7 +10,10 @@
     "prisma": "^6.2.1"
   },
   "scripts": {
-  "prisma-generate": "prisma generate --schema=./prisma/schema.prisma"
+  "prisma-generate": "prisma generate --schema=./prisma/schema.prisma",
+  "dev": "nodemon src/index.js",
+  "start": "node src/index.js",
+  "build": "echo 'No build step needed' "
 }
 
 }
