@@ -16,32 +16,17 @@ datasource db {
 model Purchase {
   id        String   @id @default(uuid())
   userId    String
-  courseId  String
+  courseId  String   // ✅ No foreign key
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
-  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
   @@unique([userId, courseId])
   @@index([courseId])
 }
 
-model Course {
-  id          String       @id @default(uuid())
-  userId      String
-  title       String       @db.Text
-  description String?      @db.Text
-  price       Float?
-  isPublished Boolean      @default(false)
-  purchases   Purchase[]
-}
-
-model User {
-  id    String   @id @default(uuid())
-  email String   @unique
-}
-
 model Transaction {
   id        String  @id
+  reference String  @unique  // Now required
   userId    String
   courseId  String
   amount    Float
@@ -49,3 +34,5 @@ model Transaction {
   status    String
   createdAt DateTime @default(now())
 }
+
+

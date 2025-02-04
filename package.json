@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@prisma/client": "^6.2.1",
+    "axios": "^1.7.9",
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
@@ -10,10 +11,9 @@
     "prisma": "^6.2.1"
   },
   "scripts": {
-  "prisma-generate": "prisma generate --schema=./prisma/schema.prisma",
-  "dev": "nodemon src/index.js",
-  "start": "node src/index.js",
-  "build": "echo 'No build step needed' "
-}
-
+    "prisma-generate": "prisma generate --schema=./prisma/schema.prisma",
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
+    "build": "echo 'No build step needed' "
+  }
 }
