@@ -3,6 +3,7 @@ const router = express.Router();
 const crypto = require("crypto");
 const { PrismaClient } = require("@prisma/client");
 const axios = require("axios");
+const { log } = require("console");
 
 const prisma = new PrismaClient();
 
@@ -53,11 +54,11 @@ router.post("/", async (req, res) => {
             console.log("✅ Transaction recorded:", transaction);
 
             // ✅ Notify Next.js app to unlock the course
-            const purchaseResponse = await axios.post(`http://localhost:3000/api/courses/purchase`, {
+            const purchaseResponse = await axios.post(`https://lms-microservice-test-paystack.vercel.app/api/courses/purchase`, {
                 userId,
                 courseId,
             });
-
+            log(purchaseResponse.status);
             if (purchaseResponse.status === 200) {
                 console.log("✅ Course unlocked successfully in Next.js app");
             } else {
