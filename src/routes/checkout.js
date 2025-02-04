@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
         }
 // Fetch Course from Next.js API
 try {
-    const courseResponse = await fetch(`http://localhost:3000/api/courses/${courseId}`);
+    const courseResponse = await fetch(`https://lms-microservice-test-paystack.vercel.app/api/courses/${courseId}`);
 
     if (!courseResponse.ok) {
         return res.status(404).json({ error: "Course not found or not published" });
