@@ -10,6 +10,8 @@ const prisma = new PrismaClient();
 
 router.post("/", async (req, res) => {
     console.log("✅ Received webhook from Paystack");
+    console.log("Headers:", req.headers);
+    console.log("Body:", req.body);
 
     const secret = process.env.PAYSTACK_SECRET_KEY;
     const hash = crypto.createHmac("sha512", secret)
