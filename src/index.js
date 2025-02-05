@@ -12,6 +12,10 @@ const PORT = process.env.PORT || 3001;
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.get("/ping", (req, res) => {
+    res.send("Server is alive!");
+});
+
 
 try {
     console.log('Loading routes...');
